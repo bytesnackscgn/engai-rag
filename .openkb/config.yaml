@@ -1,0 +1,3 @@
+language: de
+model: deepseek/deepseek-chat
+pageindex_threshold: 20
