@@ -38,9 +38,9 @@ This wrapper exists to do **three things** OpenKB does not:
 │  - LLM orchestration via OpenRouter                     │
 │  - Confidence scoring                                   │
 ├─────────────────────────────────────────────────────────┤
-│  LLM  (deepseek/deepseek-chat via OpenRouter)           │
+│  LLM  (openrouter/z-ai/glm-4.7-flash via litellm/openrouter)   │
 │  - Answer generation                                    │
-│  - Embedding & reranking                                │
+│                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
 
