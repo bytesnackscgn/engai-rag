@@ -1,0 +1,13 @@
+{
+  "communityPlugins": {
+    "dataview": {
+      "enabled": true
+    },
+    "excalidraw": {
+      "enabled": true
+    },
+    "graph-view": {
+      "enabled": true
+    }
+  }
+}
