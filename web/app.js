@@ -1,29 +1,23 @@
-// ===== DOM Elements =====
 const apiKeyInput = document.getElementById('api-key');
 const chatForm = document.getElementById('chat-form');
 const messageInput = document.getElementById('message-input');
 const sendButton = document.getElementById('send-button');
 const chatMessages = document.getElementById('chat-messages');
 
-// ===== Constants =====
 const API_ENDPOINT = '/api/chat';
 const STORAGE_KEYS = {
     API_KEY: 'engai-rag-api-key',
     CHAT_HISTORY: 'engai-rag-chat-history'
 };
 
-// ===== State =====
 let chatHistory = [];
 
-// ===== Initialization =====
 function init() {
-    // Load API key from localStorage
     const savedApiKey = localStorage.getItem(STORAGE_KEYS.API_KEY);
     if (savedApiKey) {
         apiKeyInput.value = savedApiKey;
     }
 
-    // Load chat history from sessionStorage
     const savedHistory = sessionStorage.getItem(STORAGE_KEYS.CHAT_HISTORY);
     if (savedHistory) {
         try {
@@ -35,35 +29,19 @@ function init() {
         }
     }
 
-    // Update send button state
     updateSendButton();
 
-    // Event listeners
     apiKeyInput.addEventListener('input', handleApiKeyChange);
     chatForm.addEventListener('submit', handleSubmit);
     messageInput.addEventListener('input', handleMessageInput);
     messageInput.addEventListener('keydown', handleTextareaKeydown);
-
-    // Auto-resize textarea
     messageInput.addEventListener('input', autoResizeTextarea);
 }
 
-// ===== Event Handlers =====
-function handleApiKeyChange() {
-    const apiKey = apiKeyInput.value.trim();
-    localStorage.setItem(STORAGE_KEYS.API_KEY, apiKey);
-    updateSendButton();
-}
-
-function handleMessageInput() {
-    updateSendButton();
-}
-
 function handleTextareaKeydown(e) {
-    // Submit on Enter (without Shift)
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
-        if (sendButton.disabled === false) {
+        if (!sendButton.disabled) {
             chatForm.dispatchEvent(new Event('submit'));
         }
     }
@@ -79,7 +57,6 @@ function handleSubmit(e) {
         return;
     }
 
-    // Add user message to history
     const userMessage = {
         role: 'user',
         content: message,
@@ -87,27 +64,17 @@ function handleSubmit(e) {
     };
     chatHistory.push(userMessage);
 
-    // Clear input and reset height
     messageInput.value = '';
     messageInput.style.height = 'auto';
     updateSendButton();
 
-    // Save history
     saveChatHistory();
-
-    // Render user message
     renderMessage(userMessage);
-
-    // Scroll to bottom
     scrollToBottom();
-
-    // Send to API
     sendMessage(message, apiKey);
 }
 
-// ===== API Communication =====
 async function sendMessage(message, apiKey) {
-    // Create loading message
     const loadingMessage = {
         role: 'assistant',
         content: '',
@@ -135,7 +102,6 @@ async function sendMessage(message, apiKey) {
 
         const data = await response.json();
 
-        // Remove loading message
         chatHistory.pop();
         chatHistory.push(loadingMessage, {
             role: 'assistant',
@@ -144,13 +110,11 @@ async function sendMessage(message, apiKey) {
             timestamp: new Date().toISOString()
         });
 
-        // Re-render the last messages
         renderChatHistory();
         scrollToBottom();
         saveChatHistory();
 
     } catch (error) {
-        // Remove loading message
         chatHistory.pop();
 
         const errorMessage = {
@@ -166,23 +130,19 @@ async function sendMessage(message, apiKey) {
     }
 }
 
-// ===== Rendering =====
 function renderChatHistory() {
-    // Clear all messages except welcome
     const welcome = chatMessages.querySelector('.welcome-message');
     chatMessages.innerHTML = '';
     if (welcome) {
         chatMessages.appendChild(welcome);
     }
 
-    // Render all messages
     chatHistory.forEach(message => {
         renderMessage(message);
     });
 }
 
 function renderMessage(message) {
-    // Remove existing message with same timestamp if updating
     const existing = document.querySelector(`[data-timestamp="${message.timestamp}"]`);
     if (existing) {
         existing.remove();
@@ -207,7 +167,6 @@ function renderMessage(message) {
     const contentEl = document.createElement('div');
     contentEl.className = 'message-content';
 
-    // Header
     const header = document.createElement('div');
     header.className = 'message-header';
     header.innerHTML = `
@@ -216,13 +175,11 @@ function renderMessage(message) {
     `;
     contentEl.appendChild(header);
 
-    // Text content
     const textEl = document.createElement('div');
     textEl.className = 'message-text';
     textEl.textContent = message.content;
     contentEl.appendChild(textEl);
 
-    // Sources
     if (message.sources && message.sources.length > 0) {
         const sourcesSection = createSourcesSection(message.sources);
         contentEl.appendChild(sourcesSection);
@@ -273,7 +230,6 @@ function createSourcesSection(sources) {
     return section;
 }
 
-// ===== Utilities =====
 function updateSendButton() {
     const hasMessage = messageInput.value.trim().length > 0;
     const hasApiKey = apiKeyInput.value.trim().length > 0;
@@ -316,5 +272,4 @@ function saveChatHistory() {
     }
 }
 
-// ===== Start Application =====
 document.addEventListener('DOMContentLoaded', init);
