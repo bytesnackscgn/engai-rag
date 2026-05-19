@@ -32,3 +32,5 @@
 {"id":"int-69be2f22","kind":"field_change","created_at":"2026-05-19T18:20:50.226088Z","actor":"Georgij Michel","issue_id":"engai-rag-ian","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
 {"id":"int-718bf1f6","kind":"field_change","created_at":"2026-05-19T18:20:54.84744Z","actor":"Georgij Michel","issue_id":"engai-rag-nx7","extra":{"field":"status","new_value":"in_progress","old_value":"closed"}}
 {"id":"int-acb033f0","kind":"field_change","created_at":"2026-05-19T18:21:01.925937Z","actor":"Georgij Michel","issue_id":"engai-rag-nx7","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
+{"id":"int-f42e2e18","kind":"field_change","created_at":"2026-05-19T18:29:01.769789Z","actor":"Georgij Michel","issue_id":"engai-rag-3zt","extra":{"field":"status","new_value":"in_progress","old_value":"open"}}
+{"id":"int-ca8cb896","kind":"field_change","created_at":"2026-05-19T18:29:06.141032Z","actor":"Georgij Michel","issue_id":"engai-rag-3zt","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
