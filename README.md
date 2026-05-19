@@ -1,5 +1,7 @@
 # OpenKB - KfW Energieberater Knowledge Base
 
+![Lint](https://github.com/vectifyai/engai-rag/workflows/lint/badge.svg)
+
 OpenKB is a structured knowledge base for KfW funding programs and energy consulting, built from document ingestion and maintained as a wiki.
 
 ## Quick Start
