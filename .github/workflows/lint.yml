@@ -1,0 +1,48 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir openkb litellm
+
+      - name: Set LLM API key
+        run: echo "LLM_API_KEY=${{ secrets.LLM_API_KEY }}" >> $GITHUB_ENV
+
+      - name: Run openkb lint
+        id: lint
+        run: |
+          set +e
+          openkb lint
+          echo "lint_exit_code=$?" >> $GITHUB_OUTPUT
+          set -e
+
+      - name: Upload lint report
+        if: always() && hashFiles('wiki/reports/**/*').length > 0
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-report
+          path: wiki/reports/
+          retention-days: 14
+
+      - name: Fail on lint errors
+        if: steps.lint.outputs.lint_exit_code != '0'
+        run: |
+          echo "❌ Lint failed. Check the lint report artifact for details."
+          exit 1
