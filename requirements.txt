@@ -26,6 +26,9 @@ loguru==0.7.3
 # Document Processing
 markitdown==0.1.5
 
+# Configuration
+pyyaml>=6.0.1
+
 # Development (optional)
 pytest==9.0.3
 httpx==0.28.1

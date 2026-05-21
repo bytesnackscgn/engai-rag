@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: engaichat
+Version: 0.1.0
+Summary: CLI tool for KfW Energy Consultant Assistant
+Requires-Python: >=3.10
+Requires-Dist: openkb==0.2.0
+Requires-Dist: click==8.4.0
+Requires-Dist: loguru==0.7.3
+Requires-Dist: markitdown==0.1.5
+Requires-Dist: pydantic==2.13.2
+Requires-Dist: fastapi==0.136.1
+Requires-Dist: uvicorn[standard]==0.47.0
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

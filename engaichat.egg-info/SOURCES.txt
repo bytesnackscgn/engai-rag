@@ -1,0 +1,10 @@
+README.md
+setup.py
+cli/__init__.py
+cli/commands.py
+engaichat.egg-info/PKG-INFO
+engaichat.egg-info/SOURCES.txt
+engaichat.egg-info/dependency_links.txt
+engaichat.egg-info/entry_points.txt
+engaichat.egg-info/requires.txt
+engaichat.egg-info/top_level.txt

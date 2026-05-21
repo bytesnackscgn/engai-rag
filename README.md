@@ -7,7 +7,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
 [![OpenKB](https://img.shields.io/badge/OpenKB-0.2.1-orange.svg)](https://github.com/VectifyAI/OpenKB)
 [![Lint](https://github.com/vectifyai/engai-rag/workflows/lint/badge.svg)](https://github.com/vectifyai/engai-rag/actions/workflows/lint.yml)
-
+https://www.marktechpost.com/2026/04/26/how-to-build-a-fully-searchable-ai-knowledge-base-with-openkb-openrouter-and-llama/
 ## 📋 Projektübersicht
 
 Der **KfW Energieberater Assistent** ist ein intelligenter Chatbot, der Energieberater, Sanierungsberater und KfW-Antragsteller bei Fragen zu Förderprogrammen, energetischer Sanierung und Gebäudeeffizienz unterstützt. Das System nutzt **OpenKB** als Wissensbasis mit Vectorless RAG-Technologie und antwortet präzise auf Basis offizieller KfW-Dokumentation und technischer Richtlinien.

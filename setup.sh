@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # EngAI RAG Setup Script
 
@@ -20,7 +20,13 @@ source venv/bin/activate
 
 # Install dependencies
 echo "📥 Installing dependencies..."
-uv pip install -r requirements.txt
+pip install -r requirements.txt
+echo "✓ Dependencies installed"
+
+# Install the CLI in development mode
+echo "📦 Installing EngAI RAG CLI..."
+pip install -e .
+echo "✓ CLI installed successfully"
 
 # Create necessary directories
 echo "📁 Creating directories..."
@@ -39,10 +45,17 @@ mkdir -p cache/query_cache
 echo ""
 echo "✅ Setup complete!"
 echo ""
+echo "You are now in the virtual environment."
+echo ""
+echo "Available commands:"
+echo "  engaichat openkb init          - Initialize OpenKB knowledge base"
+echo "  engaichat openkb lint          - Run health checks"
+echo "  engaichat status               - Show system status"
+echo ""
 echo "Next steps:"
 echo "1. Edit .env with your OpenRouter API key"
 echo "2. Add KfW documents to the raw/ directory"
-echo "3. Install CLI: pip install -e ."
-echo "4. Run: engaichat status"
+echo "3. Run: engaichat openkb init"
+echo "4. Run: engaichat openkb lint"
 echo "5. Run: uvicorn api.main:app --reload"
 echo ""
